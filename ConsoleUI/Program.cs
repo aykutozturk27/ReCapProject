@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -30,18 +31,21 @@ namespace ConsoleUI
             //    Console.WriteLine(color.Name);
             //}
 
-            Console.WriteLine("--------Get Daily Price GreaterThan 0-----------");
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetByUnitPrice())
+            Console.WriteLine("-------------Brand Id'si 2 olan arabalar----------");
+            foreach (var car in carManager.GetAllByBrandId(2))
             {
                 Console.WriteLine(car.Name);
             }
 
-            Console.WriteLine("--------Get Car Name Length Greater Than 2-----------");
-            foreach (var car in carManager.GetAllByCarName())
+            Console.WriteLine("-------------Color Id'si 3 olan arabalar-------");
+            foreach (var car in carManager.GetAllByColorId(3))
             {
                 Console.WriteLine(car.Name);
             }
+
+            Console.WriteLine("\n-----------------Car add----------------");
+            carManager.Add(new Car { BrandId = 4, ColorId = 2, DailyPrice = 0, Name = "Renault", ModelYear = DateTime.Now.AddYears(-5), Description = "Otomatik Dizel" });
         }
     }
 }

@@ -14,6 +14,19 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car car)
+        {
+            if (car.DailyPrice > 0 && car.Name.Length > 2)
+            {
+                _carDal.Add(car);
+                System.Console.WriteLine("Araba eklendi");
+            }
+            else
+            {
+                System.Console.WriteLine("Lütfen günlük fiyatı 0'dan büyük ve araba ismini 2 karakterden uzun giriniz! Girdiğiniz değerler : Günlük fiyatı : {0} Araba adı : {1}", car.DailyPrice, car.Name);
+            }
+        }
+
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
@@ -24,19 +37,9 @@ namespace Business.Concrete
             return _carDal.GetAll(p => p.BrandId == id);
         }
 
-        public List<Car> GetAllByCarName()
-        {
-            return _carDal.GetAll(x => x.Name.Length > 2);
-        }
-
         public List<Car> GetAllByColorId(int id)
         {
             return _carDal.GetAll(p => p.ColorId == id);
-        }
-
-        public List<Car> GetByUnitPrice()
-        {
-            return _carDal.GetAll(p => p.DailyPrice > 0);
         }
     }
 }

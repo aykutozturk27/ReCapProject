@@ -8,7 +8,6 @@ namespace Business.Abstract
         List<Car> GetAll();
         List<Car> GetAllByColorId(int id);
         List<Car> GetAllByBrandId(int id);
-        List<Car> GetAllByCarName();
-        List<Car> GetByUnitPrice();
+        void Add(Car car);
     }
 }
