@@ -1,7 +1,9 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -12,11 +14,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _brands = new List<Brand>
             {
-                new Brand{BrandId=1, BrandName = "BMW"},
-                new Brand{BrandId=2, BrandName = "Mercedes"},
-                new Brand{BrandId=3, BrandName = "Audi"},
-                new Brand{BrandId=4, BrandName = "Mustang"},
-                new Brand{BrandId=5, BrandName = "Ferrari"},
+                new Brand{Id=1, Name = "BMW"},
+                new Brand{Id=2, Name = "Mercedes"},
+                new Brand{Id=3, Name = "Audi"},
+                new Brand{Id=4, Name = "Mustang"},
+                new Brand{Id=5, Name = "Ferrari"},
             };
         }
 
@@ -27,25 +29,25 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Brand brand)
         {
-            Brand brandToDelete = _brands.SingleOrDefault(c => c.BrandId == brand.BrandId);
+            Brand brandToDelete = _brands.SingleOrDefault(c => c.Id == brand.Id);
 
             _brands.Remove(brandToDelete);
         }
 
-        public List<Brand> GetAll()
+        public Brand Get(Expression<Func<Brand, bool>> filter)
+        {
+            return _brands.Where(c => c.Id > 0).SingleOrDefault();
+        }
+
+        public List<Brand> GetAll(Expression<Func<Brand, bool>> filter = null)
         {
             return _brands;
         }
 
-        public Brand GetById(int brandId)
-        {
-            return _brands.Where(c => c.BrandId == brandId).SingleOrDefault();
-        }
-
         public void Update(Brand brand)
         {
-            Brand brandToDelete = _brands.SingleOrDefault(c => c.BrandId == brand.BrandId);
-            brandToDelete.BrandId = brand.BrandId;
+            Brand brandToDelete = _brands.SingleOrDefault(c => c.Id == brand.Id);
+            brandToDelete.Id = brand.Id;
         }
     }
 }

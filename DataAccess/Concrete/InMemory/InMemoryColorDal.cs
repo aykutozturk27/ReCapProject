@@ -1,7 +1,9 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -12,11 +14,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _colors = new List<Color>
             {
-                new Color{ColorId=1, ColorName = "Beyaz"},
-                new Color{ColorId=2, ColorName = "Mavi"},
-                new Color{ColorId=3, ColorName = "Kırmızı"},
-                new Color{ColorId=4, ColorName = "Gri"},
-                new Color{ColorId=5, ColorName = "Siyah"},
+                new Color{Id=1, Name = "Beyaz"},
+                new Color{Id=2, Name = "Mavi"},
+                new Color{Id=3, Name = "Kırmızı"},
+                new Color{Id=4, Name = "Gri"},
+                new Color{Id=5, Name = "Siyah"},
             };
         }
 
@@ -27,25 +29,25 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Color color)
         {
-            Color colorToDelete = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
+            Color colorToDelete = _colors.SingleOrDefault(c => c.Id == color.Id);
 
             _colors.Remove(colorToDelete);
         }
 
-        public List<Color> GetAll()
+        public Color Get(Expression<Func<Color, bool>> filter)
+        {
+            return _colors.Where(c => c.Id > 0).SingleOrDefault();
+        }
+
+        public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
         {
             return _colors;
         }
 
-        public Color GetById(int colorId)
-        {
-            return _colors.Where(c => c.ColorId == colorId).SingleOrDefault();
-        }
-
         public void Update(Color color)
         {
-            Color colorToDelete = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
-            colorToDelete.ColorId = color.ColorId;
+            Color colorToDelete = _colors.SingleOrDefault(c => c.Id == color.Id);
+            colorToDelete.Id = color.Id;
         }
     }
 }
