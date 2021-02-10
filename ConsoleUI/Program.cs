@@ -30,7 +30,8 @@ namespace ConsoleUI
         {
             Console.WriteLine("-----------------Car Get Id-----------------");
             CarManager carManagerGetById = new CarManager(new EfCarDal());
-            Console.WriteLine(carManagerGetById.Get(5));
+            var car = carManagerGetById.Get(3);
+            Console.WriteLine(car.Name);
         }
 
         private static void CarListTest()
@@ -56,7 +57,7 @@ namespace ConsoleUI
         {
             Console.WriteLine("-----------------Car Update-----------------");
             CarManager carManagerUpdate = new CarManager(new EfCarDal());
-            carManagerUpdate.Update(new Car { Id = 4, BrandId = 3, ColorId = 2, Name = "Renault", Description = "", ModelYear = DateTime.Now.AddYears(-5), DailyPrice = 5000 });
+            carManagerUpdate.Update(new Car { Id = 4, BrandId = 3, ColorId = 2, Name = "Renault", Description = "Kişisel", ModelYear = DateTime.Now.AddYears(-5), DailyPrice = 5000 });
             Console.WriteLine("Car Updated Successfully");
         }
 
