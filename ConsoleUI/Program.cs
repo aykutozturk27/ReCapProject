@@ -32,6 +32,7 @@ namespace ConsoleUI
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             DateTime? returnValue = null;
+            //var result = rentalManager.Add(new Rental { Id = 3, CarId = 3, CustomerId = 2, RentDate = DateTime.Now.AddDays(-8), ReturnDate = DateTime.Now.AddDays(-1) });
             var result = rentalManager.Add(new Rental { Id = 3, CarId = 3, CustomerId = 2, RentDate = DateTime.Now.AddDays(-8), ReturnDate = returnValue });
             if (result.Success)
             {
