@@ -23,7 +23,24 @@ namespace ConsoleUI
 
             //CarGetByIdTest();
 
-            DtoTest();
+            //DtoTest();
+
+            RentalAddTest();
+        }
+
+        private static void RentalAddTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            DateTime? returnValue = null;
+            var result = rentalManager.Add(new Rental { Id = 3, CarId = 3, CustomerId = 2, RentDate = DateTime.Now.AddDays(-8), ReturnDate = returnValue });
+            if (result.Success)
+            {
+                Console.WriteLine("Car Rental added successfully");
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
         private static void CarGetByIdTest()
