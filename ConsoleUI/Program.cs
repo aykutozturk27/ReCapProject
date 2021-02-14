@@ -48,7 +48,7 @@ namespace ConsoleUI
         {
             Console.WriteLine("-----------------Car Get Id-----------------");
             CarManager carManagerGetById = new CarManager(new EfCarDal());
-            var car = carManagerGetById.Get(3);
+            var car = carManagerGetById.GetById(3);
             var result = car.Data;
             Console.WriteLine(result.Name);
         }
@@ -70,7 +70,7 @@ namespace ConsoleUI
         {
             Console.WriteLine("-----------------Car Delete-----------------");
             CarManager carManagerDelete = new CarManager(new EfCarDal());
-            var car = carManagerDelete.Get(4);
+            var car = carManagerDelete.GetById(4);
             var result = car.Data;
             carManagerDelete.Delete(result);
             Console.WriteLine("Car Deleted Successfully");
