@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Business.Constants
+﻿namespace Business.Constants
 {
     public static class Messages
     {
@@ -30,13 +26,18 @@ namespace Business.Constants
         public static string RentalUpdated = "Kira güncellendi";
         public static string RentalDeleted = "Kira silindi";
 
+        public static string CarImageAdded = "Araba resmi eklendi";
+        public static string CarImageUpdated = "Araba resmi güncellendi";
+        public static string CarImageDeleted = "Araba resmi silindi";
+
         public static string CarNameInvalid = "Araba ismi geçersiz";
         public static string BrandNameInvalid = "Marka ismi geçersiz";
         public static string ColorNameInvalid = "Renk ismi geçersiz";
         public static string CompanyNameInvalid = "Şirket ismi geçersiz";
         public static string RentalReturnDateInvalid = "Araba teslim tarihi geçersiz";
 
-        
+        public static string CarImageLimitExceded = "En fazla 5 tane fotoğraf yüklenebilir";
+
         public static string MaintenanceTime = "Sistem bakımda";
 
         public static string CarListed = "Arabalar listelendi";
