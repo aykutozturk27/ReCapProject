@@ -1,4 +1,6 @@
-﻿namespace Business.Constants
+﻿using Core.Entities.Concrete;
+
+namespace Business.Constants
 {
     public static class Messages
     {
@@ -44,5 +46,11 @@
         public static string BrandListed = "Markalar listelendi";
         public static string ColorListed = "Renkler listelendi";
 
+        public static string AuthorizationDenied = "Yetkiniz yok!";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string WrongPassword = "Parola hatası";
+        public static string LoginSuccessfull = "Başarılı giriş";
+        public static string UserAlreadyExists = "Kullanıcı mevcut";
+        public static string TokenCreated = "Token oluşturuldu";
     }
 }
