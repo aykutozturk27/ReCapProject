@@ -12,6 +12,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Business.Concrete
 {
@@ -60,6 +61,25 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == id));
         }
+
+        public IDataResult<CarDetailDto> GetCarDetailById(int id)
+        {
+            var data = _carDal.GetCarDetails().Where(p => p.CarId == id).FirstOrDefault();
+            return new SuccessDataResult<CarDetailDto>(data);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetAllBrandDetailByBrandId(int id)
+        {
+            var data = _carDal.GetCarDetails().Where(p => p.BrandId == id).ToList();
+            return new SuccessDataResult<List<CarDetailDto>>(data);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetAllColorDetailByColorId(int id)
+        {
+            var data = _carDal.GetCarDetails().Where(p => p.ColorId == id).ToList();
+            return new SuccessDataResult<List<CarDetailDto>>(data);
+        }
+
 
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]

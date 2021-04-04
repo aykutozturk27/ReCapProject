@@ -18,7 +18,9 @@ namespace Core.Utilities.Helpers
             }
             var result = NewPath(file);
             File.Move(sourcepath, result);
-            return result;
+            var filePath = result.Replace(@"\", "/");
+            filePath = filePath.Replace("wwwroot", "");
+            return filePath;
         }
 
         public static void Delete(string path)
