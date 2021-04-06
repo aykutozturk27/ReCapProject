@@ -62,10 +62,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == id));
         }
 
-        public IDataResult<CarDetailDto> GetCarDetailById(int id)
+        public IDataResult<List<CarDetailDto>> GetCarDetailById(int id)
         {
-            var data = _carDal.GetCarDetails().Where(p => p.CarId == id).FirstOrDefault();
-            return new SuccessDataResult<CarDetailDto>(data);
+            var data = _carDal.GetCarDetails().Where(p => p.CarId == id).ToList();
+            return new SuccessDataResult<List<CarDetailDto>>(data);
         }
 
         public IDataResult<List<CarDetailDto>> GetAllBrandDetailByBrandId(int id)
