@@ -5,6 +5,7 @@ using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -23,6 +24,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.RentalReturnDateInvalid);
             }
+            
             _rentalDal.Add(rental);
 
             return new SuccessResult(Messages.RentalAdded);
@@ -40,6 +42,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(x => x.Id == id));
         }
 
+        public IDataResult<Rental> GetByCarId(int carId)
+        {
+            return new SuccessDataResult<Rental>(_rentalDal.Get(x => x.CarId == carId));
+        }
+
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
@@ -47,6 +54,11 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
+            if (rental.ReturnDate > DateTime.Now)
+            {
+                return new ErrorResult(Messages.CarIsAlreadyRent);
+            }
+
             _rentalDal.Update(rental);
 
             return new SuccessResult(Messages.RentalUpdated);
